@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Fix GUI</title>
+
+    <link rel="stylesheet" href="customFix.css">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script src="customFix.js" defer></script>
+</head>
+
+<body>
+
+    <div class="customFix">
+        <h4>CUSTOM FIX CONFIGURE</h4>
+
+        <section class="customFix-A">
+            <input type="number" id="Fix_Tag" placeholder="Fix Tag" min="1">
+            <input type="text" id="Fix_Tag_desc" placeholder="Tag Description">
+
+            <button id="increment" onclick="increment()">
+                <i class="fa-solid fa-circle-plus" style="color:#3fa919;"></i>
+            </button>
+
+            <button id="decrement" onclick="decrement()">
+                <i class="fa-sharp fa-solid fa-circle-xmark" style="color: #ff0000;"></i>
+            </button>
+        </section>
+
+        <section class="customFix-B">
+            
+
+            <div class="Operations">
+                <button id="Reset">Reset</button>
+                <button id="Submit">Submit</button>
+                <button id="Close">Close</button>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+
+</html>

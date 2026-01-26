@@ -1,0 +1,213 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    color: orange;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: #122c46;
+    padding-top: 10px;   /* 👈 space at top */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Nav{
+    width: 100vw;
+    display: flex;
+    /* border: 2px solid yellow; */
+}
+
+.A{
+    width: 60%;
+    padding-left: 20px;
+    display: flex;
+    justify-content: start;
+    text-align: center;
+    color: orange;
+    gap: 50px;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.B{
+    width: 40%;
+    display: flex;
+    justify-content: end;
+    text-align: center;
+    color: orange;
+    padding-right: 20px;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.Nav i {
+    width: 40px;
+    height: 40px;
+    font-size: 35px;
+    color: orange;
+}
+
+.Nav i:hover {
+   color: whitesmoke;
+   font-size: 43px;
+}
+
+.A section{
+    border-right: 1px solid orange;
+    padding-right: 20px;
+}
+
+.Nav section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainContainer{
+    margin-top: 15px;
+    width: 99vw;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#innerFrame{
+    /* background-color: #ffee00; */
+    width: 100%;
+    height: 95%;
+}
+
+
+
+/* from here the style for the custom fix tag tags  */
+
+.customFix{
+    border: 1px solid black;
+    background-color: #384959;
+    width: 400px;
+    height: auto;
+}
+
+.customFix h4{
+    color: white;
+    text-align: center;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.customFix-A{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#Fix_Tag{
+    width: 100px;
+    text-align: center;
+}
+
+#Fix_Tag_desc{
+    width: 200px;
+    text-align: center;
+}
+
+input:hover{
+    background-color: #BDDDFC;
+    color: black;
+}
+.customFix-B{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    
+}
+ 
+.Tags{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.Operations{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#Submit{
+    width: 100px;
+    margin-top: 10px;
+    background-color: green;
+    color: white;
+    border: 1px solid white
+}
+
+#Reset{
+    width: 100px;
+    margin-top: 10px;
+    background-color: rgb(252, 71, 0);
+    color: white;
+    border: 1px solid white
+}
+
+#Close{
+    width: 100px;
+    margin-top: 10px;
+    background-color: rgb(52, 57, 59);
+    color: white;
+    border: 1px solid white
+}
+.fix_index{
+    width: 100px;
+    text-align: center;
+}
+
+.fix_index_desc{
+    width: 200px;
+    text-align: center;
+}
+
+
+
+/* Tooltip container must be relative */
+#userInputFile {
+    position: relative;
+}
+
+/* Tooltip text */
+.Tool-Tip {
+    position: absolute;
+    left: 105%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #000;
+    color: #fff;
+    padding: 5px 8px;
+    font-size: 11px;
+    border-radius: 4px;
+    white-space: nowrap;
+    visibility: hidden;
+    z-index: 100;
+}
+
+/* Show tooltip on hover */
+#userInputFile:hover .Tool-Tip {
+    visibility: visible;
+    font-size: 20px;
+    font-family: monospace;
+}
+
+footer{
+    color: orange;
+    font-size: 15px;
+}
