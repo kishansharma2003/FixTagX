@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Find You Fix</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #122c46;
+      color: orange;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: monospace;
+      margin-bottom: 30px;
+      font-size: 2.5em;
+      /* Removed text-shadow */
+    }
+
+    .input-group {
+      margin: 20px auto;
+    }
+
+    input[type="number"] {
+      padding: 12px 20px;
+      font-size: 18px;
+      width: 200px;
+      border: 2px solid orange;
+      border-radius: 6px;
+      background-color: #122c46;
+      color: orange;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input[type="number"]::placeholder {
+      color: orange;
+    }
+
+    input[type="number"]:focus {
+      border-color: orange;
+      box-shadow: 0 0 8px orange;
+      background-color: #122c46;
+    }
+  </style>
+</head>
+<body>
+  <div class="input-group">
+    <input
+      type="number"
+      id="tag1"
+      placeholder="Enter FIX Tag"
+      onkeydown="handleEnter(event, 1)"
+      autocomplete="off"
+      spellcheck="false"
+    />
+  </div>
+
+  <script>
+    let win1 = null;
+
+    function handleEnter(event, inputNumber) {
+      if (event.key === 'Enter') {
+        const tagValue = document.getElementById('tag' + inputNumber).value.trim();
+        if (!tagValue) return;
+
+        const url = `https://www.onixs.biz/fix-dictionary/4.4/tagNum_${tagValue}.html`;
+
+        const screenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
+        const screenTop = window.screenTop !== undefined ? window.screenTop : screen.top;
+        const width = 600;
+        const height = 600;
+
+        const left = screenLeft + (window.innerWidth / 2) - (width / 2);
+        const top = screenTop + 250;
+
+        const windowOptions = `width=${width},height=${height},top=${top},left=${left}`;
+
+        if (win1 && !win1.closed) {
+          win1.location.href = url;
+        } else {
+          win1 = window.open(url, 'fixTag1', windowOptions);
+        }
+      }
+    }
+
+    document.addEventListener('click', () => {
+      if (win1 && !win1.closed) {
+        win1.close();
+        win1 = null;
+      }
+    });
+  </script>
+
+</body>
+</html>

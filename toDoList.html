@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: #122c46;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .toDoList {
+            border: 1px solid wheat;
+            padding: 20px;
+            width: 420px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+        .userTask {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            gap: 10px;
+        }
+
+        .userTask button {
+            background-color: transparent;
+            font-size: 20px;
+        }
+
+        .userTask textarea {
+            width: 90%;
+            height: auto;
+            font-size: 20px;
+            background-color: transparent;
+            border: none;
+            color: wheat;
+            font-family: monospace;
+            border-bottom: 1px solid wheat;
+            font-size: 17px;
+            text-align: center;
+
+        }
+
+        .operationBtn {
+            display: flex;
+            justify-content: space-evenly;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+
+        button {
+            width: 120px;
+            height: 30px;
+            font-size: 15px;
+            border: none;
+            background-color: transparent;
+        }
+
+        .New_Task {
+            background-color: rgb(5, 190, 247);
+        }
+
+        .Mark_All {
+            background-color: rgb(0, 241, 0);
+        }
+
+
+        .ClearAll {
+            background-color: red;
+        }
+
+        .operationBtn button:hover {
+            background-color: wheat;
+            color: black;
+            transform: scale(1.05); 
+        }
+
+        .disable {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- text-decoration: line-through;  this i need to us e -->
+    <!-- All ways remember id has the highest priority so when ever you use focus and hover it wont affect totaaly 
+     some fields would remain the same -->
+
+    <div class="toDoList">
+        <div class="operationBtn">
+            <button class="New_Task" id="NewTask" onclick="NewTask()">New Task </button>
+            <button class="Mark_All" onclick="MarkAll()">Mark All Done</button>
+            <button class="ClearAll" onclick="ClearAll()">Clear All</button>
+        </div>
+
+
+
+
+    </div>
+
+</body>
+
+<script defer>
+
+    let toDoList = document.getElementsByClassName("toDoList")[0];
+    let Btns = document.getElementsByClassName("operationBtn")[0];
+
+    let taskCount = 0;
+
+    function NewTask() {
+        taskCount++;
+
+        if (document.getElementById("Warning")) {
+            return;
+        }
+
+
+        if (taskCount > 10) {
+
+            let warning = document.createElement('h3');
+            let NewTask = document.getElementById("NewTask");
+            NewTask.className = "disable";
+
+            warning.id = "Warning"
+            warning.innerText = "**Task Limit Full , Don't Overload Yourself !!"
+            warning.style.color = "red";
+            Btns.insertAdjacentElement("afterend", warning);
+
+            return;
+        }
+        let task = document.createElement('section');
+        task.className = "userTask";
+
+        let input = document.createElement('textarea');
+        input.type = "text";
+        input.placeholder = "Enter the task...";
+
+        let butt = document.createElement('button');
+        butt.innerText = "❌";
+        butt.className = `Status`;
+        butt.onclick = function () {
+            if (butt.innerText === "❌") {
+                butt.innerText = "✅";
+                input.style.textDecoration = "line-through";
+            }
+
+            else {
+                butt.innerText = "❌";
+                input.style.textDecoration = "none";
+            }
+        }
+
+        task.insertAdjacentElement("beforeend", input);
+        task.insertAdjacentElement("beforeend", butt);
+
+        toDoList.insertAdjacentElement("beforeend", task);
+
+    }
+
+    function MarkAll() {
+        let AllBtn = document.getElementsByClassName('Status')
+
+        for (let x = 0; x < AllBtn.length; x++) {
+            if (AllBtn[x].innerText === "❌") {
+                AllBtn[x].click();
+            }
+        }
+
+    }
+
+    function ClearAll() {
+        let userTask = document.getElementsByClassName("userTask");
+        let NewTask = document.getElementById("NewTask");
+        NewTask.className = "New_Task";
+        // here not increment x because when a element is remove from DOM 0 is reemove now the index 1 will shift to Zero
+        for (let x = 0; x < userTask.length;) {
+            userTask[x].remove();
+        }
+
+        if (document.getElementById("Warning")) {
+            document.getElementById("Warning").remove();
+        }
+        taskCount = 0;
+    }
+
+</script>
+
+</html>
