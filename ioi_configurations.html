@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOI Configurations</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef2f7;
+            color: #172033
+        }
+
+        header {
+            height: 68px;
+            background: #172033;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 0 28px;
+            font-size: 27px;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .15)
+        }
+
+        .page {
+            height: calc(100vh - 68px);
+            padding: 18px;
+            display: grid;
+            grid-template-columns: 46% 54%;
+            gap: 18px
+        }
+
+        .panel {
+            background: #fff;
+            border: 1px solid #d7dee8;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(20, 35, 55, .07);
+            overflow: hidden;
+            min-height: 0
+        }
+
+        .panel-head {
+            padding: 18px 20px;
+            border-bottom: 1px solid #e2e8f0
+        }
+
+        .panel-title {
+            font-size: 20px;
+            font-weight: 700
+        }
+
+        .panel-sub {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 5px
+        }
+
+        .left-body {
+            padding: 20px;
+            overflow: auto;
+            height: calc(100% - 70px)
+        }
+
+        .inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 7px
+        }
+
+        input {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            font-size: 14px;
+            outline: none
+        }
+
+        input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, .1)
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 135px;
+            resize: vertical;
+            padding: 11px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            line-height: 1.45;
+            outline: none;
+            overflow: auto;
+        }
+
+        textarea:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, .1);
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-flex;
+            width: 17px;
+            height: 17px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            font-size: 11px;
+            cursor: help
+        }
+
+        .tooltip span {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            left: 24px;
+            top: -7px;
+            width: 285px;
+            background: #172033;
+            color: #fff;
+            padding: 10px;
+            border-radius: 7px;
+            font-size: 12px;
+            line-height: 1.4;
+            font-weight: 400;
+            z-index: 10
+        }
+
+        .tooltip:hover span {
+            visibility: visible;
+            opacity: 1
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px
+        }
+
+        th {
+            background: #edf2f7;
+            padding: 11px 7px;
+            font-size: 12px;
+            border-bottom: 2px solid #d5dde8
+        }
+
+        td {
+            padding: 11px 7px;
+            text-align: center;
+            border-bottom: 1px solid #e5eaf0;
+            font-size: 13px
+        }
+
+        .valid {
+            background: #dcfce7;
+            color: #166534;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-weight: 800
+        }
+
+        .invalid {
+            background: #fee2e2;
+            color: #991b1b;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-weight: 800
+        }
+
+        .send {
+            font-weight: 800;
+            color: #1d4ed8
+        }
+
+        .dash {
+            color: #991b1b;
+            font-weight: 800
+        }
+
+        .logic {
+            margin-top: 18px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 12px;
+            line-height: 1.5
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            min-height: 0
+        }
+
+        .config-toolbar {
+            padding: 14px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            gap: 9px;
+            align-items: center
+        }
+
+        .search {
+            flex: 1;
+            position: relative
+        }
+
+        .search input {
+            padding-left: 35px
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 11px;
+            color: #64748b
+        }
+
+        .btn {
+            border: 0;
+            border-radius: 7px;
+            padding: 10px 15px;
+            font-weight: 800;
+            cursor: pointer;
+            color: white;
+            font-size: 14px
+        }
+
+        .add {
+            background: #16a34a
+        }
+
+        .delete {
+            background: #dc2626
+        }
+
+        .save {
+            background: #2563eb
+        }
+
+        .import {
+            background: #475569
+        }
+
+        .btn:hover {
+            filter: brightness(.94)
+        }
+
+        .config-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            min-height: 0;
+            flex: 1
+        }
+
+        .config-list {
+            border-right: 1px solid #e2e8f0;
+            overflow: auto
+        }
+
+        .config-item {
+            padding: 14px 16px;
+            border-bottom: 1px solid #edf0f4;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            cursor: pointer
+        }
+
+        .config-item:hover {
+            background: #f8fafc
+        }
+
+        .config-item.selected {
+            background: #eaf2ff;
+            border-left: 4px solid #2563eb;
+            padding-left: 12px
+        }
+
+        .config-item input {
+            width: 16px;
+            height: 16px;
+            margin: 0;
+            flex: 0 0 16px
+        }
+
+        .config-name {
+            font-size: 13px;
+            font-weight: 700;
+            word-break: break-word
+        }
+
+        .details {
+            padding: 20px;
+            overflow: auto
+        }
+
+        .detail-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 18px
+        }
+
+        .detail-row {
+            margin-bottom: 17px
+        }
+
+        .detail-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #64748b;
+            font-weight: 800;
+            margin-bottom: 6px
+        }
+
+        .detail-value {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 7px;
+            padding: 11px;
+            font-size: 14px;
+            min-height: 40px
+        }
+
+        .empty {
+            padding: 35px 20px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 13px
+        }
+
+        .modal-bg {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, .45);
+            align-items: center;
+            justify-content: center;
+            z-index: 100
+        }
+
+        .modal {
+            width: 520px;
+            max-width: 92%;
+            background: white;
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .25)
+        }
+
+        .modal h2 {
+            margin: 0 0 18px
+        }
+
+        .modal-row {
+            margin-bottom: 13px
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 9px;
+            margin-top: 18px
+        }
+
+        .cancel {
+            background: #64748b
+        }
+
+        .status {
+            font-size: 11px;
+            color: #64748b;
+            margin-left: auto;
+            white-space: nowrap
+        }
+
+        .hidden-file {
+            display: none
+        }
+
+        @media(max-width:1000px) {
+            .page {
+                height: auto;
+                grid-template-columns: 1fr
+            }
+
+            .config-layout {
+                min-height: 600px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>IOI Configurations</header>
+
+    <div class="page">
+
+        <!-- LEFT: IOI VALIDATION -->
+        <section class="panel">
+            <div class="panel-head">
+                <div class="panel-title">IOI Validation</div>
+                <div class="panel-sub">Determine the quantity eligible to be routed and advertised.</div>
+            </div>
+
+            <div class="left-body">
+                <div class="inputs">
+                    <div>
+                        <label>ADV (Flid 20)</label>
+                        <input id="adv" type="number" min="0" step="any" value="200" oninput="calculateIOI()">
+                    </div>
+                    <div>
+                        <label>Order QTY</label>
+                        <input id="orderQty" type="number" min="0" step="any" value="500" oninput="calculateIOI()">
+                    </div>
+                    <div>
+                        <label>Limit Price
+                            <span class="tooltip">i
+                                <span>If MKT order, enter Last Price, Mid Price, or Close Price for the notional
+                                    calculation.</span>
+                            </span>
+                        </label>
+                        <input id="price" type="number" min="0" step="any" value="100" oninput="calculateIOI()">
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Min Notional</th>
+                            <th>Min ADV</th>
+                            <th>Max Notional</th>
+                            <th>Max ADV</th>
+                            <th>Valid IOI</th>
+                            <th>IOI Send QTY</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ioiBody"></tbody>
+                </table>
+
+                <div class="logic">
+                    <b>Validation A:</b> Order QTY must be greater than both Min Notional QTY and Min ADV QTY.<br>
+                    <b>Validation B:</b> If Valid IOI is TRUE, IOI Send QTY = MIN(Order QTY, Max Notional QTY, Max ADV
+                    QTY).<br>
+                    <b>Important:</b> If initial IOI validation fails, no IOI can be sent, so IOI Send QTY is shown as
+                    <b>-</b>.
+                </div>
+            </div>
+        </section>
+
+        <!-- RIGHT: CONFIGURATION MANAGEMENT -->
+        <section class="panel right">
+            <div class="panel-head">
+                <div class="panel-title">Configuration Management</div>
+                <div class="panel-sub">Search, add, edit and delete configurations. Connect Config.json once to update
+                    the actual local file automatically.</div>
+            </div>
+
+            <div class="config-toolbar">
+                <div class="search">
+                    <span class="search-icon">⌕</span>
+                    <input id="search" type="text" placeholder="Search configuration name..." oninput="filterConfigs()">
+                </div>
+                <button class="btn add" onclick="openAddModal()">＋ Add</button>
+                <button class="btn delete" onclick="deleteSelected()">− Delete</button>
+                <button class="btn import" onclick="connectConfigFile()">Connect Config.json</button>
+                <span id="fileStatus" class="status">Config.json not connected</span>
+                <span id="status" class="status">5 configs</span>
+            </div>
+
+            <div class="config-layout">
+                <div class="config-list" id="configList"></div>
+
+                <div class="details" id="details">
+                    <div class="empty">Select a configuration to view its details.</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ADD / EDIT MODAL -->
+    <div class="modal-bg" id="modalBg">
+        <div class="modal">
+            <h2 id="modalTitle">Add Configuration</h2>
+
+            <div class="modal-row">
+                <label>Config Name</label>
+                <input id="cfgName" type="text" placeholder="e.g. IOI_Allowed_Access">
+            </div>
+
+            <div class="modal-row">
+                <label>Config Level</label>
+                <input id="cfgLevel" type="text" placeholder="e.g. ACCOUNT">
+            </div>
+
+            <div class="modal-row">
+                <label>Config Description</label>
+                <textarea id="cfgDescription" rows="6" placeholder="Configuration description"></textarea>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn cancel" onclick="closeModal()">Cancel</button>
+                <button class="btn save" onclick="saveConfig()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /*
+        LOCAL FILE WORKFLOW:
+        The user connects Config.json once using the browser file picker.
+        The File System Access API then keeps a file handle and writes
+        changes directly back to that SAME Config.json after Add/Edit/Delete.
+        
+        No repeated download is required.
+        
+        If the browser does not support the File System Access API, the page
+        shows a clear message instead of pretending that the file was updated.
+        */
+
+        let configs = [
+            {
+                "Name": "IOI_Allowed_Access",
+                "Config Level": "ACCOUNT",
+                "Config description": "Controls whether IOI access is allowed for an account."
+            },
+            {
+                "Name": "IOI_Max_Order_QTY",
+                "Config Level": "ORDER",
+                "Config description": "Defines the maximum order quantity allowed for IOI processing."
+            },
+            {
+                "Name": "IOI_Min_Notional",
+                "Config Level": "ORDER",
+                "Config description": "Defines the minimum notional threshold used during IOI validation."
+            },
+            {
+                "Name": "IOI_ADV_Validation",
+                "Config Level": "SECURITY",
+                "Config description": "Controls ADV based validation and advertised quantity limits."
+            },
+            {
+                "Name": "IOI_Routing_Rules",
+                "Config Level": "ROUTING",
+                "Config description": "Defines routing related rules used when an IOI is eligible for sending."
+            }
+        ];
+
+        let selectedIndex = null;
+        let editingIndex = null;
+
+        function num(id) {
+            const v = parseFloat(document.getElementById(id).value);
+            return Number.isFinite(v) ? v : 0;
+        }
+
+        function fmt(v) {
+            if (!Number.isFinite(v)) return "0";
+            return Number.isInteger(v) ? v.toLocaleString() : v.toLocaleString(undefined, { maximumFractionDigits: 4 });
+        }
+
+        function qtyNotional(amount, price) {
+            return price > 0 ? amount / price : 0;
+        }
+
+        function qtyADV(percent, adv) {
+            return adv * (percent / 100);
+        }
+
+        /*
+        Exactly 3 valid + 3 invalid configurations are generated for the
+        current IOI inputs. Min/Max ADV are percentages; ADV itself is the
+        user-entered numeric quantity.
+        */
+        function makeIOIConfigs() {
+            const adv = num("adv"), order = num("orderQty"), price = num("price");
+            if (adv <= 0 || order <= 0 || price <= 0) return [];
+
+            const value = order * price;
+
+            // Keep Min ADV safely below order qty for valid rows.
+            const safePct = Math.max(0.01, Math.min(45, (order / adv) * 100 * 0.65));
+
+            return [
+                { minNotional: value * .10, minAdv: safePct * .20, maxNotional: value * 1.50, maxAdv: 100 },
+                { minNotional: value * .20, minAdv: safePct * .40, maxNotional: value * .60, maxAdv: 70 },
+                { minNotional: value * .30, minAdv: safePct * .60, maxNotional: value * .80, maxAdv: 50 },
+
+                // These are guaranteed invalid because Min Notional QTY > Order QTY.
+                { minNotional: value * 1.20, minAdv: 55, maxNotional: value * 2.00, maxAdv: 80 },
+                { minNotional: value * 1.50, minAdv: 65, maxNotional: value * 2.50, maxAdv: 90 },
+                { minNotional: value * 1.80, minAdv: 85, maxNotional: value * 3.00, maxAdv: 100 }
+            ];
+        }
+
+        function calculateIOI() {
+            const rows = makeIOIConfigs();
+            const adv = num("adv"), order = num("orderQty"), price = num("price");
+            const body = document.getElementById("ioiBody");
+            body.innerHTML = "";
+
+            if (!rows.length) return;
+
+            rows.forEach(c => {
+                const minN = qtyNotional(c.minNotional, price);
+                const minA = qtyADV(c.minAdv, adv);
+                const maxN = qtyNotional(c.maxNotional, price);
+                const maxA = qtyADV(c.maxAdv, adv);
+
+                const valid = order > minN && order > minA;
+                const send = valid ? Math.min(order, maxN, maxA) : null;
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+            <td class="value">${fmt(c.minNotional)} (${fmt(minN)})</td>
+            <td class="value">${fmt(c.minAdv)}% (${fmt(minA)})</td>
+            <td class="value">${fmt(c.maxNotional)} (${fmt(maxN)})</td>
+            <td class="value">${fmt(c.maxAdv)}% (${fmt(maxA)})</td>
+            <td>${valid ? '<span class="valid">TRUE</span>' : '<span class="invalid">FALSE</span>'}</td>
+            <td class="send">${send === null ? '<span class="dash">-</span>' : fmt(send)}</td>
+        `;
+                body.appendChild(tr);
+            });
+        }
+
+        function renderConfigs() {
+            const list = document.getElementById("configList");
+            const query = document.getElementById("search").value.trim().toLowerCase();
+
+            list.innerHTML = "";
+
+            const matches = configs.map((cfg, index) => ({ cfg, index }))
+                .filter(x => x.cfg.Name.toLowerCase().includes(query));
+
+            if (!matches.length) {
+                list.innerHTML = '<div class="empty">No matching configuration.</div>';
+                document.getElementById("status").textContent = "0 configs";
+                return;
+            }
+
+            document.getElementById("status").textContent =
+                matches.length + " config" + (matches.length === 1 ? "" : "s");
+
+            matches.forEach(({ cfg, index }) => {
+                const item = document.createElement("div");
+                item.className = "config-item" + (selectedIndex === index ? " selected" : "");
+
+                item.innerHTML = `
+            <input type="checkbox"
+                   data-index="${index}"
+                   onclick="event.stopPropagation()">
+            <div class="config-name">${escapeHTML(cfg.Name)}</div>
+        `;
+
+                item.onclick = () => selectConfig(index);
+                list.appendChild(item);
+            });
+        }
+
+        function filterConfigs() {
+            renderConfigs();
+        }
+
+        function selectConfig(index) {
+            selectedIndex = index;
+            renderConfigs();
+
+            const cfg = configs[index];
+            document.getElementById("details").innerHTML = `
+        <div class="detail-title">${escapeHTML(cfg.Name)}</div>
+
+        <div class="detail-row">
+            <div class="detail-label">Config Level</div>
+            <div class="detail-value">${escapeHTML(cfg["Config Level"])}</div>
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">Config Description</div>
+            <div class="detail-value">${escapeHTML(cfg["Config description"])}</div>
+        </div>
+
+        <div style="display:flex;gap:9px;margin-top:22px">
+            <button class="btn save" onclick="editSelected()">Edit</button>
+            <button class="btn delete" onclick="deleteSingle(${index})">Delete</button>
+        </div>
+    `;
+        }
+
+        function escapeHTML(value) {
+            return String(value ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
+
+        function openAddModal() {
+            editingIndex = null;
+            document.getElementById("modalTitle").textContent = "Add Configuration";
+            document.getElementById("cfgName").value = "";
+            document.getElementById("cfgLevel").value = "";
+            document.getElementById("cfgDescription").value = "";
+            document.getElementById("modalBg").style.display = "flex";
+        }
+
+        function editSelected() {
+            if (selectedIndex === null) return;
+
+            editingIndex = selectedIndex;
+            const cfg = configs[selectedIndex];
+
+            document.getElementById("modalTitle").textContent = "Edit Configuration";
+            document.getElementById("cfgName").value = cfg.Name;
+            document.getElementById("cfgLevel").value = cfg["Config Level"];
+            document.getElementById("cfgDescription").value = cfg["Config description"];
+            document.getElementById("modalBg").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("modalBg").style.display = "none";
+        }
+
+        function saveConfig() {
+            const name = document.getElementById("cfgName").value.trim();
+            const level = document.getElementById("cfgLevel").value.trim();
+            const description = document.getElementById("cfgDescription").value.trim();
+
+            if (!name || !level || !description) {
+                setFileStatus("Please complete all configuration fields", false);
+                return;
+            }
+
+            const duplicate = configs.some((c, i) =>
+                c.Name.toLowerCase() === name.toLowerCase() && i !== editingIndex
+            );
+
+            if (duplicate) {
+                setFileStatus("Configuration name already exists", false);
+                return;
+            }
+
+            const cfg = {
+                "Name": name,
+                "Config Level": level,
+                "Config description": description
+            };
+
+            if (editingIndex === null) {
+                configs.push(cfg);
+            } else {
+                configs[editingIndex] = cfg;
+            }
+
+            selectedIndex = editingIndex === null ? configs.length - 1 : editingIndex;
+
+            closeModal();
+            renderConfigs();
+            selectConfig(selectedIndex);
+
+            // Persist the change directly into the connected Config.json.
+            saveConfigToActualFile();
+        }
+
+        function getCheckedIndexes() {
+            return [...document.querySelectorAll('#configList input[type="checkbox"]:checked')]
+                .map(x => Number(x.dataset.index));
+        }
+
+        function deleteSelected() {
+            const indexes = getCheckedIndexes();
+
+            if (!indexes.length) {
+                setFileStatus("Select at least one configuration", false);
+                return;
+            }
+
+            configs = configs.filter((_, i) => !indexes.includes(i));
+
+            selectedIndex = null;
+            document.getElementById("details").innerHTML =
+                '<div class="empty">Select a configuration to view its details.</div>';
+
+            renderConfigs();
+            saveConfigToActualFile();
+        }
+
+        function deleteSingle(index) {
+            configs.splice(index, 1);
+            selectedIndex = null;
+
+            document.getElementById("details").innerHTML =
+                '<div class="empty">Select a configuration to view its details.</div>';
+
+            renderConfigs();
+            saveConfigToActualFile();
+        }
+
+
+        // ------------------------------------------------------------
+        // Config.json direct file persistence
+        // ------------------------------------------------------------
+
+        const HANDLE_DB_NAME = "IOIConfigDB";
+        const HANDLE_STORE = "handles";
+        const HANDLE_KEY = "configFileHandle";
+
+        function setFileStatus(message, ok = false) {
+            const el = document.getElementById("fileStatus");
+            if (!el) return;
+            el.textContent = message;
+            el.style.color = ok ? "#15803d" : "#64748b";
+        }
+
+        function openHandleDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(HANDLE_DB_NAME, 1);
+
+                request.onupgradeneeded = () => {
+                    const db = request.result;
+                    if (!db.objectStoreNames.contains(HANDLE_STORE)) {
+                        db.createObjectStore(HANDLE_STORE);
+                    }
+                };
+
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        async function storeFileHandle(handle) {
+            try {
+                const db = await openHandleDB();
+
+                await new Promise((resolve, reject) => {
+                    const tx = db.transaction(HANDLE_STORE, "readwrite");
+                    tx.objectStore(HANDLE_STORE).put(handle, HANDLE_KEY);
+                    tx.oncomplete = resolve;
+                    tx.onerror = () => reject(tx.error);
+                });
+
+                db.close();
+            } catch (err) {
+                console.warn("Could not persist file handle:", err);
+            }
+        }
+
+        async function getStoredFileHandle() {
+            try {
+                const db = await openHandleDB();
+
+                const handle = await new Promise((resolve, reject) => {
+                    const tx = db.transaction(HANDLE_STORE, "readonly");
+                    const request = tx.objectStore(HANDLE_STORE).get(HANDLE_KEY);
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+
+                db.close();
+                return handle || null;
+            } catch (err) {
+                return null;
+            }
+        }
+
+        async function verifyHandlePermission(handle, write = false) {
+            if (!handle) return false;
+
+            try {
+                const options = { mode: write ? "readwrite" : "read" };
+
+                if (handle.queryPermission) {
+                    const permission = await handle.queryPermission(options);
+                    if (permission === "granted") return true;
+                }
+
+                if (handle.requestPermission) {
+                    const permission = await handle.requestPermission(options);
+                    return permission === "granted";
+                }
+
+                return true;
+            } catch (err) {
+                return false;
+            }
+        }
+
+        async function readConfigFromHandle(handle) {
+            const file = await handle.getFile();
+            const text = await file.text();
+            const parsed = JSON.parse(text);
+
+            if (!Array.isArray(parsed)) {
+                throw new Error("Config.json must contain a JSON array.");
+            }
+
+            parsed.forEach(x => {
+                if (!x.Name || !x["Config Level"] || !x["Config description"]) {
+                    throw new Error(
+                        "Every configuration must contain Name, Config Level and Config description."
+                    );
+                }
+            });
+
+            configs = parsed;
+        }
+
+        async function connectConfigFile() {
+            if (!window.showOpenFilePicker) {
+                setFileStatus("Use Chrome or Edge for direct Config.json updates", false);
+                return;
+            }
+
+            try {
+                const [handle] = await window.showOpenFilePicker({
+                    multiple: false,
+                    types: [{
+                        description: "Configuration JSON",
+                        accept: { "application/json": [".json"] }
+                    }]
+                });
+
+                if (!handle) return;
+
+                if (handle.name.toLowerCase() !== "config.json") {
+                    setFileStatus("Please select Config.json", false);
+                    return;
+                }
+
+                const permitted = await verifyHandlePermission(handle, true);
+
+                if (!permitted) {
+                    setFileStatus("Write permission not granted", false);
+                    return;
+                }
+
+                await readConfigFromHandle(handle);
+                await storeFileHandle(handle);
+
+                setFileStatus("Config.json connected ✓", true);
+
+                selectedIndex = null;
+                document.getElementById("details").innerHTML =
+                    '<div class="empty">Select a configuration to view its details.</div>';
+
+                renderConfigs();
+
+                setFileStatus("Config.json connected ✓", true);
+            } catch (err) {
+                if (err && err.name === "AbortError") return;
+                alert("Could not connect Config.json: " + err.message);
+            }
+        }
+
+        async function restoreConfigFileConnection() {
+            const handle = await getStoredFileHandle();
+
+            if (!handle) {
+                setFileStatus("Config.json not connected");
+                return;
+            }
+
+            try {
+                const permitted = await verifyHandlePermission(handle, false);
+
+                if (!permitted) {
+                    setFileStatus("Click Connect Config.json");
+                    return;
+                }
+
+                await readConfigFromHandle(handle);
+                setFileStatus("Config.json connected ✓", true);
+                renderConfigs();
+            } catch (err) {
+                setFileStatus("Config.json not connected");
+            }
+        }
+
+        async function saveConfigToActualFile() {
+            const handle = await getStoredFileHandle();
+
+            if (!handle) {
+                setFileStatus("Connect Config.json first");
+                return false;
+            }
+
+            try {
+                const permitted = await verifyHandlePermission(handle, true);
+
+                if (!permitted) {
+                    setFileStatus("Write permission required");
+                    setFileStatus("Connect Config.json first", false);
+                    return false;
+                }
+
+                const writable = await handle.createWritable();
+
+                await writable.write(
+                    JSON.stringify(configs, null, 4)
+                );
+
+                await writable.close();
+
+                setFileStatus("Saved to Config.json ✓", true);
+                return true;
+            } catch (err) {
+                setFileStatus("Save failed");
+                setFileStatus("Could not update Config.json", false);
+                return false;
+            }
+        }
+
+        // Initial rendering
+        renderConfigs();
+        calculateIOI();
+
+        // Reconnect to the previously selected Config.json when possible.
+        restoreConfigFileConnection();
+    </script>
+
+</body>
+
+</html>
